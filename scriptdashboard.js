@@ -12,5 +12,5 @@ function shorten(e){
 
 	fetch(`/shorten?url=${url}&key=${key}`);
 	
-	document.querySelector("h4").innerHTML = `Shortened URL is <a href="https://small.tiny/${key}">small.tiny/${key}</a>`;
+	document.querySelector("h4").innerHTML = `Shortened URL is <a href="https://url-shortener-umesh.herokuapp.com/${key}">url-shortener-umesh.herokuapp.com/${key}</a>`;
 }
