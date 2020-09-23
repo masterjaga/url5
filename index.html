@@ -12,17 +12,17 @@
   <!-- partial:index.partial.html -->
   <div class="login-page">
     <div class="form">
-      <form class="register-form">
+      <form class="register-form" onSubmit="register();return false">
         <input type="text" id="registerName" placeholder="name" />
-        <input type="text" id="registerPassword" placeholder="password" />
         <input type="text" id="registerEmail" placeholder="email address" />
-        <button onClick="register()">create</button>
+        <input type="text" id="registerPassword" placeholder="password" />
+        <button type="submit">create</button>
         <p class="message">Already registered? <a href="#">Sign In</a></p>
       </form>
-      <form class="login-form">
+      <form class="login-form" onSubmit="login();return false">
         <input type="text" id="loginEmail" placeholder="email" />
         <input type="text" id="loginPassword" placeholder="password" />
-        <button onClick="login()">login</button>
+        <button type="submit">login</button>
         <p class="message">Not registered? <a href="#">Create an account</a></p>
       </form>
     </div>
@@ -33,7 +33,7 @@
   <script type="text/javascript">
 
     async function login() {
-      event.preventDefault();
+
 
       let email = document.getElementById('loginEmail').value;
       let password = document.getElementById('loginPassword').value;
@@ -42,20 +42,21 @@
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
-          "email":"etst@gmail.com",
-          "password":"123456"
+          "email":email,
+          "password":password
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
 
+      
       let logResult = await user.json();
       if (logResult.status === 200) {
         let token = logResult.token;
-        localStorage.setItem('c_user', token);
+        //localStorage.setItem('currentUser', token);
         alert("Logged In Successfully");
-        window.location.assign('/dashboard.html')
+        window.location.assign('./dashboard.html')
         //return true;
       }
       alert(logResult.message);
@@ -63,11 +64,11 @@
     }
 
     async function register() {
-      event.preventDefault();
+
 
       let name = document.getElementById('registerName').value;
-      let email = document.getElementById('registerPassword').value;
-      let password = document.getElementById('registerEmail').value;
+      let email = document.getElementById('registerEmail').value;
+      let password = document.getElementById('registerPassword').value;
 
       let newUser = await fetch('https://url-shortener-umesh.herokuapp.com/user/signup', {
         method: "POST",
@@ -85,7 +86,7 @@
       let res = await newUser.json();
       if (res.status === 200) {
         alert("Successfully registered account")
-        window.location.assign('/')
+        //window.location.assign('/')
         //return true;
       }
       alert(res.message);
