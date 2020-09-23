@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Landing Page</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div class="login-page">
+    <div class="form">
+      <form class="register-form">
+        <input type="text" id="registerName" placeholder="name" />
+        <input type="text" id="registerPassword" placeholder="password" />
+        <input type="text" id="registerEmail" placeholder="email address" />
+        <button onClick="register()">create</button>
+        <p class="message">Already registered? <a href="#">Sign In</a></p>
+      </form>
+      <form class="login-form">
+        <input type="text" id="loginEmail" placeholder="email" />
+        <input type="text" id="loginPassword" placeholder="password" />
+        <button onClick="login()">login</button>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+      </form>
+    </div>
+  </div>
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="./script.js"></script>
+  <script type="text/javascript">
+
+    async function login() {
+      event.preventDefault();
+
+      let email = document.getElementById('loginEmail').value;
+      let password = document.getElementById('loginPassword').value;
+
+      let user = await fetch('https://url-shortener-umesh.herokuapp.com/user/login', {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+          "email":"etst@gmail.com",
+          "password":"123456"
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      let logResult = await user.json();
+      if (logResult.status === 200) {
+        let token = logResult.token;
+        localStorage.setItem('c_user', token);
+        alert("Logged In Successfully");
+        window.location.assign('/dashboard.html')
+        //return true;
+      }
+      alert(logResult.message);
+      //return false;
+    }
+
+    async function register() {
+      event.preventDefault();
+
+      let name = document.getElementById('registerName').value;
+      let email = document.getElementById('registerPassword').value;
+      let password = document.getElementById('registerEmail').value;
+
+      let newUser = await fetch('https://url-shortener-umesh.herokuapp.com/user/signup', {
+        method: "POST",
+        mode: 'cors',
+        body: JSON.stringify({
+          "username": name,
+          "email": email,
+          "password": password
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      let res = await newUser.json();
+      if (res.status === 200) {
+        alert("Successfully registered account")
+        window.location.assign('/')
+        //return true;
+      }
+      alert(res.message);
+      // return false;
+    }
+
+  </script>
+</body>
+
+</html>

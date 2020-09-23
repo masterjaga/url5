@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>URL Shortener Dashboard</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--
+        <link rel="icon" href="/favicon.png">
+          -->
+  <link rel="stylesheet" href="https://unpkg.com/wingcss@1.0.0-beta/dist/wing.min.css" />
+  <link rel="stylesheet" href="style.css">
+
+  <style type="text/css">
+    body {
+      text-align: center;
+    }
+
+    input[type=text] {
+      max-width: 350px;
+    }
+
+    h4 {
+      color: #3d3d3d;
+    }
+
+    a {
+      color: inherit;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Dashboard</h1>
+    <h3>Shorten your URL</h3>
+
+    <form onsubmit="shorten(event)">
+      <input id="url" type="text" placeholder=" Paste in the link" required>
+      <br>
+      <!--
+          <input id="key" type="text" placeholder=" A custom path? (optional)">
+          -->
+      <br>
+      <button class="outline">Shorten </button>
+    </form>
+
+    <br><br>
+
+    <h4></h4>
+
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="scriptdashboard.js"></script>
+
+    <div class="row">
+      <div class="table-responsive table-bordered movie-table">
+        <table class="table movie-table">
+          <thead>
+            <tr class="movie-table-head">
+              <th>Short URL</th>
+              <th>Long URL</th>
+              <th>Times Visited</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <!--row-->
+            <tr class="dark-row">
+              <td>Toy Story</td>
+              <td> <span style="color:green;">5</span> /5 </td>
+              <td>40</td>
+              <td>Both</td>
+            </tr>
+            <!--/.row-->
+
+            <!--row-->
+            <tr class="light-row">
+              <td>The Shining</td>
+              <td> <span style="color:green;">5</span> /5 </td>
+              <td>37</td>
+              <td>Both</td>
+            </tr>
+            <!--/.row-->
+
+            <!--row-->
+            <tr class="dark-row">
+              <td>Rubber</td>
+              <td> <span style="color:red;">1</span> /5 </td>
+              <td>20</td>
+              <td>Rental</td>
+            </tr>
+            <!--/.row-->
+
+            <!--row-->
+            <tr class="light-row">
+              <td>The Hangover</td>
+              <td> <span style="color:orange;">3</span> /5 </td>
+              <td>33</td>
+              <td>Sale</td>
+            </tr>
+            <!--/.row-->
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
