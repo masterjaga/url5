@@ -8,13 +8,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!--
         <link rel="icon" href="/favicon.png">
-          -->
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  
+  
+  -->
+
   <link rel="stylesheet" href="https://unpkg.com/wingcss@1.0.0-beta/dist/wing.min.css" />
-  <link rel="stylesheet" href="style.css">
+
 
   <style type="text/css">
+  @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
     body {
       text-align: center;
+      background: #76b852;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+      background: -moz-linear-gradient(right, #76b852, #8DC26F);
+      background: -o-linear-gradient(right, #76b852, #8DC26F);
+      background: linear-gradient(to left, #76b852, #8DC26F);
+      font-family: "Roboto", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     input[type=text] {
@@ -38,7 +55,7 @@
     <h3>Shorten your URL</h3>
 
     <form onsubmit="shorten(event)">
-      <input id="url" type="text" placeholder=" Paste in the link" required>
+      <input id="url" type="text" placeholder=" Paste the long link" required>
       <br>
       <!--
           <input id="key" type="text" placeholder=" A custom path? (optional)">
@@ -72,21 +89,21 @@
 
             <!--row-->
             <tr class="dark-row">
-              <td>dfbdbfdfbdbf</td>
-              <td>fbdbfdb </td>
+              <td>short1</td>
+              <td>long2 </td>
               <td>0</td>
-              <td>dfbdfb</td>
+              <td>something</td>
             </tr>
             <!--/.row-->
 
             <!--row-->
             <tr class="light-row">
-              <td>vdrfvdf</td>
-              <td>vvfdvdfv</td>
+              <td>short2</td>
+              <td>long2</td>
               <td>0</td>
-              <td>dfvdfvdfv</td>
+              <td>something</td>
             </tr>
-            
+
           </tbody>
         </table>
       </div>
@@ -110,15 +127,13 @@
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
-          "shortURL":"https://url-shortener-umesh.herokuapp.com/"+key,
-          "longURL":url
+          "shortURL": "https://url-shortener-umesh.herokuapp.com/" + key,
+          "longURL": url
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-
-      //fetch(`/shorten?url=${url}&key=${key}`);
 
       document.querySelector("h4").innerHTML = `Shortened URL is <a href="https://url-shortener-umesh.herokuapp.com/${key}">url-shortener-umesh.herokuapp.com/${key}</a>`;
     }
