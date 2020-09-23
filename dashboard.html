@@ -129,7 +129,7 @@
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
-          "shortURL":"https://url-shortener-umesh.herokuapp.com/${key}",
+          "shortURL":"https://url-shortener-umesh.herokuapp.com/"+key,
           "longURL":url
         }),
         headers: {
@@ -137,7 +137,7 @@
         },
       });
 
-      fetch(`/shorten?url=${url}&key=${key}`);
+      //fetch(`/shorten?url=${url}&key=${key}`);
 
       document.querySelector("h4").innerHTML = `Shortened URL is <a href="https://url-shortener-umesh.herokuapp.com/${key}">url-shortener-umesh.herokuapp.com/${key}</a>`;
     }
