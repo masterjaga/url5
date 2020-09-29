@@ -19,7 +19,7 @@
 
 
   <style type="text/css">
-  @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
     body {
       text-align: center;
@@ -68,9 +68,9 @@
 
     <h4></h4>
 
-    <footer>
+    <br>
+    <button class="outline" onClick="getURLsForUser(event)">View your URLs </button>
 
-    </footer>
     <!--
     <script type="text/javascript" src="scriptdashboard.js"></script>
       -->
@@ -82,27 +82,26 @@
               <th>Short URL</th>
               <th>Long URL</th>
               <th>Times Visited</th>
-              <th>Rating</th>
+              <th>User</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="URLsTableTbody">
 
-            <!--row-->
+            <!--
             <tr class="dark-row">
               <td>short1</td>
               <td>long2 </td>
               <td>0</td>
               <td>something</td>
             </tr>
-            <!--/.row-->
 
-            <!--row-->
             <tr class="light-row">
               <td>short2</td>
               <td>long2</td>
               <td>0</td>
               <td>something</td>
             </tr>
+          -->
 
           </tbody>
         </table>
@@ -123,12 +122,15 @@
         key = Math.random().toString(36).substr(2, 5);
       }
 
+      let currentUserEmail = localStorage.getItem('currentUserEmail');
+
       let shorten = await fetch('https://url-shortener-umesh.herokuapp.com/shorten', {
         method: "POST",
         mode: 'cors',
         body: JSON.stringify({
           "shortURL": "https://url-shortener-umesh.herokuapp.com/" + key,
-          "longURL": url
+          "longURL": url,
+          "currentUserEmail": currentUserEmail
         }),
         headers: {
           "Content-Type": "application/json",
@@ -136,6 +138,39 @@
       });
 
       document.querySelector("h4").innerHTML = `Shortened URL is <a href="https://url-shortener-umesh.herokuapp.com/${key}">url-shortener-umesh.herokuapp.com/${key}</a>`;
+    }
+
+    async function getURLsForUser(e) {
+
+      console.log("Getting the urls of the user")
+
+      let currentUserEmail = localStorage.getItem('currentUserEmail');
+
+      let getURLs = await fetch('https://url-shortener-umesh.herokuapp.com/getURLs/'+currentUserEmail);
+      let URLData = await getURLs.json();
+
+				let tbody =document.getElementById("URLsTableTbody");
+			  tbody.innerHTML = "";
+
+				URLData.forEach((eachURL) => {
+          let tr = document.createElement("tr");
+
+          let td1 = document.createElement("td");
+          td1.innerHTML = eachURL.shortURL;
+          let td2 = document.createElement("td");
+          td2.innerHTML = eachURL.longURL;
+          let td3 = document.createElement("td");
+          td3.innerHTML = eachURL.timesClicked;
+          let td4 = document.createElement("td");
+          td4.innerHTML = eachURL.user;
+
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          tr.appendChild(td4);
+
+					tbody.appendChild(tr);
+				});
     }
   </script>
 </body>
