@@ -15,13 +15,13 @@
       <form class="register-form" onSubmit="register();return false">
         <input type="text" id="registerName" placeholder="name" />
         <input type="text" id="registerEmail" placeholder="email address" />
-        <input type="text" id="registerPassword" placeholder="password" />
+        <input type="password" id="registerPassword" placeholder="password" />
         <button type="submit">create</button>
         <p class="message">Already registered? <a href="#">Sign In</a></p>
       </form>
       <form class="login-form" onSubmit="login();return false">
         <input type="text" id="loginEmail" placeholder="email" />
-        <input type="text" id="loginPassword" placeholder="password" />
+        <input type="password" id="loginPassword" placeholder="password" />
         <button type="submit">login</button>
         <p class="message">Not registered? <a href="#">Create an account</a></p>
       </form>
@@ -33,7 +33,6 @@
   <script type="text/javascript">
 
     async function login() {
-
 
       let email = document.getElementById('loginEmail').value;
       let password = document.getElementById('loginPassword').value;
@@ -54,17 +53,19 @@
       let logResult = await user.json();
       if (logResult.status === 200) {
         let token = logResult.token;
-        //localStorage.setItem('currentUser', token);
+        localStorage.setItem('currentUserToken', token);
+        localStorage.setItem('currentUserEmail', email);
         alert("Logged In Successfully");
         window.location.assign('./dashboard.html')
         //return true;
+      }else{
+        alert("There was a problem in signing in, Please try again");
       }
-      alert(logResult.message);
+      //alert(logResult.message);
       //return false;
     }
 
     async function register() {
-
 
       let name = document.getElementById('registerName').value;
       let email = document.getElementById('registerEmail').value;
@@ -84,13 +85,13 @@
       });
 
       let res = await newUser.json();
-      if (res.status === 200) {
+      if (res.status == 200) {
         alert("Successfully registered account")
         //window.location.assign('/')
-        //return true;
+      }else{
+        alert("There was a problem in registering user, please try after some time");
       }
-      alert(res.message);
-      // return false;
+      //alert(res.message);
     }
 
   </script>
