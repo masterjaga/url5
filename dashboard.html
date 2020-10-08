@@ -1,54 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>URL Shortener Dashboard</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <!--
-        <link rel="icon" href="/favicon.png">
-        
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  
-  
   -->
 
   <link rel="stylesheet" href="https://unpkg.com/wingcss@1.0.0-beta/dist/wing.min.css" />
-
+  <link rel="stylesheet" href="./dashboardstyle.css" />
 
   <style type="text/css">
-    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-    body {
-      text-align: center;
-      background: #76b852;
-      /* fallback for old browsers */
-      background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-      background: -moz-linear-gradient(right, #76b852, #8DC26F);
-      background: -o-linear-gradient(right, #76b852, #8DC26F);
-      background: linear-gradient(to left, #76b852, #8DC26F);
-      font-family: "Roboto", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    input[type=text] {
-      max-width: 350px;
-    }
-
-    h4 {
-      color: #3d3d3d;
-    }
-
-    a {
-      color: inherit;
-    }
   </style>
+
 </head>
 
 <body>
   <div class="container">
+
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a
+        href="#about">----------------------------------------------------------------------------------------------------------------</a>
+      <a href="#about" onClick="logout()">Logout</a>
+    </div>
 
     <h1>Dashboard</h1>
     <h3>Shorten your URL</h3>
@@ -60,7 +45,7 @@
           <input id="key" type="text" placeholder=" A custom path? (optional)">
           -->
       <br>
-      <button class="outline">Shorten </button>
+      <button class="buttonUniq">Shorten </button>
     </form>
 
     <br><br>
@@ -68,12 +53,12 @@
     <h4></h4>
 
     <br>
-    <button class="outline" onClick="getURLsForUser(event)">View your URLs </button>
+    <button class="buttonUniq" onClick="getURLsForUser(event)">View your URLs </button>
 
     <!--
     <script type="text/javascript" src="scriptdashboard.js"></script>
       -->
-    <div class="row">
+    <div class="row" style="display: flex;justify-content: center;">
       <div class="table-responsive table-bordered movie-table">
         <table class="table movie-table">
           <thead>
@@ -139,7 +124,7 @@
       document.querySelector("h4").innerHTML = `Shortened URL is <a href="https://url-shortener-umesh.herokuapp.com/${key}">url-shortener-umesh.herokuapp.com/${key}</a>`;
     }
 
-    async function getURLsForUser(e) {
+    async function getURLsForUser(event) {
 
       console.log("Getting the urls of the user")
 
@@ -155,9 +140,9 @@
         let tr = document.createElement("tr");
 
         let td1 = document.createElement("td");
-        td1.innerHTML = eachURL.shortURL;
+        td1.innerHTML = "<a href="+eachURL.shortURL+">"+eachURL.shortURL+"</a>";
         let td2 = document.createElement("td");
-        td2.innerHTML = eachURL.longURL;
+        td2.innerHTML = "<a href="+eachURL.longURL+">"+eachURL.longURL+"</a>";
         let td3 = document.createElement("td");
         td3.innerHTML = eachURL.timesClicked;
         let td4 = document.createElement("td");
@@ -170,6 +155,12 @@
 
         tbody.appendChild(tr);
       });
+    }
+
+    function logout() {
+
+      alert("Logout Successfull");
+      window.location.assign('./index.html')
     }
   </script>
 </body>
