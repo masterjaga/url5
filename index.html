@@ -15,7 +15,6 @@
 
   <div class="container">
 
-    <!--
     <div style="text-align: center;">
       <h2 class="display-4">URL Shortener</h2>
       <br>
@@ -23,7 +22,7 @@
       <h2>Shorter Links</h2>
       <h2>Larger Results</h2>
     </div>
-    -->
+
     <div class="login-page">
       <div class="form">
         <form class="register-form" onSubmit="register();return false">
@@ -32,12 +31,14 @@
           <input type="password" id="registerPassword" placeholder="Password" />
           <button type="submit">create</button>
           <p class="message">Already registered? <a href="#">Sign In</a></p>
+          <p class="message">Forgot your password? <a href="forgotpassword.html">Reset Password</a></p>
         </form>
         <form class="login-form" onSubmit="login();return false">
           <input type="text" id="loginEmail" placeholder="Email" />
           <input type="password" id="loginPassword" placeholder="Password" />
           <button type="submit">login</button>
           <p class="message">Not registered? <a href="#">Create an account</a></p>
+          <p class="message">Forgot your password? <a href="forgotpassword.html">Reset Password</a></p>
         </form>
       </div>
     </div>
