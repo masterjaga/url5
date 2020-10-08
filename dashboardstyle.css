@@ -34,6 +34,24 @@
       color: black;
     }
 
+    .tableDataShortURL {
+
+    }
+
+    .tableDataShortURL:hover {
+      background-color: black;
+      color: white;
+    }
+
+    .tableDataLongURL {
+
+    }
+
+    .tableDataLongURL:hover {
+      background-color: white;
+      color: black;
+    }
+
     .topnav {
       overflow: hidden;
       background-color: #333;
