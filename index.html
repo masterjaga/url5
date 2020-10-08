@@ -29,6 +29,7 @@
           <input type="text" id="registerName" placeholder="Name" />
           <input type="text" id="registerEmail" placeholder="Email Address" />
           <input type="password" id="registerPassword" placeholder="Password" />
+          <input type="password" id="registerConfirmPassword" placeholder="Password" />
           <button type="submit">create</button>
           <p class="message">Already registered? <a href="#">Sign In</a></p>
           <p class="message">Forgot your password? <a href="forgotpassword.html">Reset Password</a></p>
@@ -67,7 +68,6 @@
         },
       });
 
-
       let logResult = await user.json();
       if (logResult.status === 200) {
         let token = logResult.token;
@@ -88,6 +88,12 @@
       let name = document.getElementById('registerName').value;
       let email = document.getElementById('registerEmail').value;
       let password = document.getElementById('registerPassword').value;
+      let confirmPassword = document.getElementById('registerConfirmPassword').value;
+      
+      if(password != confirmPassword){
+        alert("Entered Passwords do not match !");
+        return false;
+      }
 
       let newUser = await fetch('https://url-shortener-umesh.herokuapp.com/user/signup', {
         method: "POST",
