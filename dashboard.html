@@ -63,8 +63,8 @@
         <table class="table movie-table">
           <thead>
             <tr class="movie-table-head">
-              <th>Short URL</th>
               <th>Long URL</th>
+              <th>Short URL</th>
               <th>Times Visited</th>
               <th>User</th>
             </tr>
@@ -121,7 +121,7 @@
         },
       });
 
-      document.querySelector("h4").innerHTML = `Shortened URL is <a href="https://url-shortener-umesh.herokuapp.com/${key}">url-shortener-umesh.herokuapp.com/${key}</a>`;
+      document.querySelector("h4").innerHTML = `Shortened URL is -> <a href="https://url-shortener-umesh.herokuapp.com/${key}">url-shortener-umesh.herokuapp.com/${key}</a>`;
     }
 
     async function getURLsForUser(event) {
@@ -140,16 +140,16 @@
         let tr = document.createElement("tr");
 
         let td1 = document.createElement("td");
-        td1.innerHTML = "<a href="+eachURL.shortURL+">"+eachURL.shortURL+"</a>";
+        td1.innerHTML = "<a class='tableDataShortURL' href="+eachURL.shortURL+">"+eachURL.shortURL+"</a>";
         let td2 = document.createElement("td");
-        td2.innerHTML = "<a href="+eachURL.longURL+">"+eachURL.longURL+"</a>";
+        td2.innerHTML = "<a class='tableDataLongURL' href="+eachURL.longURL+">"+eachURL.longURL+"</a>";
         let td3 = document.createElement("td");
         td3.innerHTML = eachURL.timesClicked;
         let td4 = document.createElement("td");
         td4.innerHTML = eachURL.user;
 
-        tr.appendChild(td1);
         tr.appendChild(td2);
+        tr.appendChild(td1);
         tr.appendChild(td3);
         tr.appendChild(td4);
 
