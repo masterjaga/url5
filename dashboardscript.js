@@ -63,6 +63,6 @@ async function getURLsForUser(event) {
 
 function logout() {
 
-	alert("Logout Successfull");
+	//alert("Logout Successfull");
 	window.location.assign('./index.html')
 }
