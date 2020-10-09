@@ -34,12 +34,29 @@
       color: black;
     }
 
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even){
+      background-color:#76b852;
+    }
+
+    tr:nth-child(odd){
+      background-color:#4CAF50;
+    }
+    
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
     .tableDataShortURL {
 
     }
 
     .tableDataShortURL:hover {
-      background-color: black;
       color: white;
     }
 
@@ -48,8 +65,7 @@
     }
 
     .tableDataLongURL:hover {
-      background-color: white;
-      color: black;
+      color: white;
     }
 
     .topnav {
