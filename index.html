@@ -26,6 +26,7 @@
     <div class="login-page">
       <div class="form">
         <form class="register-form" onSubmit="register();return false">
+          <p id="registerUserStatus"></p>
           <input type="text" id="registerName" placeholder="Name" />
           <input type="text" id="registerEmail" placeholder="Email Address" />
           <input type="password" id="registerPassword" placeholder="Password" />
@@ -109,11 +110,14 @@
       });
 
       let res = await newUser.json();
+      let registerStatusMessage = document.getElementById("registerUserStatus");
       if (res.status == 200) {
-        alert("Successfully registered account")
-        //window.location.assign('/')
+        //alert("Successfully registered account")
+        registerStatusMessage.innerHTML = "Successfully registered account,please Sign In";
+        //window.location.assign('/');
       } else {
-        alert("There was a problem in registering user, please try after some time");
+       // alert("There was a problem in registering user, please try after some time");
+        registerStatusMessage.innerHTML = "There was a problem in registering user, please try after some time";
       }
       //alert(res.message);
     }
